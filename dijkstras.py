@@ -5,7 +5,7 @@ import time
 
 V = 5000
 
-def dijkstrasWithoutHeap(G, s, t):
+def dijkstrasWithoutHeap(G, s, t): # Following the Dijkstra's Algorithm studied in class
     s = s-1
     t = t-1
 
