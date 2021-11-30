@@ -77,10 +77,10 @@ def dijkstrasWithHeap(G, s, t):
         status[w] = 'fringe'
         dad[w] = s
         bw[w] = v
-        myHeap.insert([v,w])
+        myHeap.push([v,w])
     
     while(True):
-        v, u = myHeap.getElement()
+        v, u = myHeap.pop()
 
         status[u] == 'in-tree'
 
@@ -99,13 +99,13 @@ def dijkstrasWithHeap(G, s, t):
                 status[w] = 'fringe'
                 dad[w] = u
                 bw[w] = min(v,vs)
-                myHeap.insert([min(v,vs), w])
+                myHeap.push([min(v,vs), w])
 
             elif ((bw[w] < min(v,vs)) and (status[w] == 'fringe')):
                 dad[w] = u
                 bw[w] = min(v,vs)
-                myHeap.insert([min(v,vs), w])
+                myHeap.push([min(v,vs), w])
 
 
 
-                
+

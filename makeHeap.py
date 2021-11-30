@@ -19,7 +19,7 @@ class Heap:
     def __init__(self):
         self.heap = []
 
-    def getElement(self):
+    def pop(self):
         store = self.heap[0]
         self.delete(0)
         return store
@@ -29,10 +29,10 @@ class Heap:
 
         #Error Handling
         while(heapSize == 1 and x == 0):
-            self.heap.getElement()
+            self.heap.pop()
         
         #Normal
-        self.heap[x] = self.heap.getElement()
+        self.heap[x] = self.heap.pop()
 
         heapSize = heapSize - 1
 
@@ -57,7 +57,7 @@ class Heap:
                     x = (2*x) + 1
 
         
-    def insert(self, i):
+    def push(self, i):
         self.heap.append(i)
 
         n = int(len(self.heap))-1

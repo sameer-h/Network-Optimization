@@ -67,11 +67,3 @@ def breadthFirstSearch(G, s, t):
             if ws not in seen:
                 Q.append([ws, min(v,vs), path+' ,'+str(ws+1)])
                 seen.add(ws)
-
-
-
-
-
-
-
-    
