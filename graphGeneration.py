@@ -18,7 +18,9 @@ class Graph:
             self.neighbor[v].add(u)
             self.adjacencyList[v].append([u,w])
         
-  
+    def listed(self):
+        return self.edges
+
     def addEdge(self, u, v, w):
         self.valid(u,v,w) #Making sure the graph is valid and prevents duplicates
 
