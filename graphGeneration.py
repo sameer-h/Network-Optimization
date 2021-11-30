@@ -1,13 +1,22 @@
 import random as rand
 from collections import defaultdict
 
+# Sameer Hussain - CSCE 629 - Network Optimization
+
+class Vertex:
+	def __init__(self, dst = 0, bw = 0):
+		self.dst = dst
+		self.bw = bw
+
 class Graph:
 
     def __init__(self):
 
         self.adjacencyList = defaultdict(list)
-        self.edges = []
+
         self.neighbor = defaultdict(set)
+
+        self.edges = []
 
     def valid(self,u,v,w):
         if v not in self.neighbor[u]:
@@ -17,14 +26,13 @@ class Graph:
         if v not in self.neighbor[v]:
             self.neighbor[v].add(u)
             self.adjacencyList[v].append([u,w])
-        
-    def listed(self):
-        return self.edges
 
     def addEdge(self, u, v, w):
         self.valid(u,v,w) #Making sure the graph is valid and prevents duplicates
-
         self.edges.append([w,u,v]) #Adding to my edge list to later use in Dijkstra's Algorithm
+    
+    def listed(self):
+        return self.edges
     
     def edgeCounter(self, v):
         return self.adjacencyList[v]
@@ -40,17 +48,17 @@ class Graph:
         
         Graph1 = Graph()
         #5000 vertices randomized
-        vertexRandom = list(range(5000))
-        rand.shuffle(vertexRandom)
+        stack = list(range(5000))
+        rand.shuffle(stack)
 
-        lastV = vertexRandom.pop()
+        lastV = stack.pop()
         while(True):
-            currV = vertexRandom.pop()
+            currV = stack.pop()
             weight = rand.randint(1,999)
             Graph1.addEdge(lastV,currV,weight)
             lastV = currV
 
-            if not vertexRandom: # Edges between neighbors
+            if not stack: # Edges between neighbors
                 break
 
         for _ in range(10001):
@@ -72,17 +80,17 @@ class Graph:
         
         Graph2 = Graph()
 
-        vertexRandom = list(range(5000))
-        rand.shuffle(vertexRandom)
+        stack = list(range(5000))
+        rand.shuffle(stack)
 
-        lastV = vertexRandom.pop()
+        lastV = stack.pop()
         while(True):
-            currV = vertexRandom.pop()
+            currV = stack.pop()
             weight = rand.randint(1,999999)
             Graph2.addEdge(lastV, currV, weight)
             lastV = currV
 
-            if not vertexRandom:
+            if not stack:
                 break
 
         freeV = list(range(5000))
@@ -90,15 +98,15 @@ class Graph:
     #20% of the graph
         for u in range(5000):
             while(True):
-                no_edges = len(Graph2.neighbors(u))
+                myEdges = len(Graph2.neighbors(u))
 
-                if no_edges > 1000: #break if vertex is connected to 20% of Graph2
+                if myEdges > 1000: #break if vertex is connected to 20% of Graph2
                     break
 
                 while(True):
                     v = rand.choice(freeV)
 
-                    if Graph2.deg(v)>=1025:
+                    if Graph2.deg(v) >= 1025:
                         freeV.remove(v)
                         continue
 
@@ -110,8 +118,8 @@ class Graph:
                     else:
                         continue
 
-        # for i in Graph2.edges:
-        #     print(i)
+        #for i in Graph2.listed():
+        #    print(i)
     
 def main():
     Graph.G2()
