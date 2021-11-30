@@ -56,46 +56,6 @@ def dijkstrasWithoutHeap(G, s, t): # Following the Dijkstra's Algorithm studied 
                 dad[w] = u
                 bw[w] = min(v, vs)
 
-# def main():
-#     pool = list(range(1,5001))
-#     sources = []
-#     targets = []
-
-#     for _ in range(5):
-#         source = random.choice(pool)
-#         pool.remove(source)
-#         target = random.choice(pool)
-#         pool.remove(target)
-#         sources.append(source)
-#         targets.append(target)
-
-#     testSet = list(zip(sources,targets))
-#     SparseG = []
-
-#     for _ in range(5):
-#         SparseG.append(Graph.G1())
-    
-#     bw1  = [[0]*5]*5
-#     path1 = [['']*5]*5
-#     #time1 = [[0 for _ in range(5)] for _ in range(5)]
-#     i = 0
-#     for sg in SparseG:
-#         j = 0
-#         print("SparseG Results for SG: ", i+1, '\n')
-#         for source, target in testSet:
-#             start_time = time.time()
-#             bw1[i][j], path1[i][j] = dijkstrasWithoutHeap(sg, source, target)
-#             end_time = time.time() - start_time
-#             print("Source: ", source, "\t"+"Target: ", target)
-#             print("Maximum Bandwidth: ", bw1[i][j])
-#             print("Path Followed: ", path1[i][j])
-#             print("Time: " + str(end_time))
-#             j+=1
-#         print('\n\n\n')
-#         i+=1
-
-# if __name__ == '__main__':
-#     main()
 
         
 
