@@ -1,4 +1,5 @@
 from graphGeneration import Graph
+from makeHeap import Heap, Vertex, Edge
 import random
 import math
 import time
@@ -57,5 +58,54 @@ def dijkstrasWithoutHeap(G, s, t): # Following the Dijkstra's Algorithm studied 
                 bw[w] = min(v, vs)
 
 
-        
+def dijkstrasWithHeap(G, s, t):
+    s = s - 1
+    t = t - 1
 
+    myHeap = Heap()
+
+    #Initializing variables to track
+    dad = [0] * V
+    status = ['unseen'] * V
+    bw = [0] * V
+    status[s] = 'in-tree'
+    
+    path = str(t+1) # string variable to track the shortest path
+
+    #neighbors for fringes
+    for w, v in G.edgeCounter(s):
+        status[w] = 'fringe'
+        dad[w] = s
+        bw[w] = v
+        myHeap.insert([v,w])
+    
+    while(True):
+        v, u = myHeap.getElement()
+
+        status[u] == 'in-tree'
+
+        if u == t:
+            temp = t
+            while (s != temp):
+                temp = dad[temp]
+                path = str(temp+1)+', '+path
+            
+            return v, path
+
+
+        for w, vs in G.edgeCounter(u):
+
+            if status[w] == 'unseen':
+                status[w] = 'fringe'
+                dad[w] = u
+                bw[w] = min(v,vs)
+                myHeap.insert([min(v,vs), w])
+
+            elif ((bw[w] < min(v,vs)) and (status[w] == 'fringe')):
+                dad[w] = u
+                bw[w] = min(v,vs)
+                myHeap.insert([min(v,vs), w])
+
+
+
+                
